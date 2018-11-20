@@ -1,5 +1,7 @@
 package pl.currenda.model;
 
+import java.util.Objects;
+
 public class Currency {
     private String code;
     private String date;
@@ -56,5 +58,21 @@ public class Currency {
                 ", bid=" + bid +
                 ", ask=" + ask +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Currency currency = (Currency) o;
+        return Double.compare(currency.bid, bid) == 0 &&
+                Double.compare(currency.ask, ask) == 0 &&
+                Objects.equals(code, currency.code) &&
+                Objects.equals(date, currency.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, date, bid, ask);
     }
 }
