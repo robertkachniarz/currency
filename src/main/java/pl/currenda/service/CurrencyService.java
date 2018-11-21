@@ -8,11 +8,8 @@ import pl.currenda.model.Currency;
 import pl.currenda.repository.CurrencyRepository;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CurrencyService {
     private String url;

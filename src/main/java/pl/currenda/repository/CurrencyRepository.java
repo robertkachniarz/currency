@@ -34,10 +34,28 @@ public class CurrencyRepository {
         average = sum / currencyList.size();
         return new BigDecimal(average).setScale(4, RoundingMode.HALF_UP);
     }
+    public BigDecimal averageAsk(){
+        double average = 0;
+        double sum = 0;
+        for (Currency currency:currencyList){
+            sum = sum + currency.getAsk();
+        }
+        average = sum / currencyList.size();
+        return new BigDecimal(average).setScale(4, RoundingMode.HALF_UP);
+    }
 
-    public double standardDeviationAsk(){
-        double standardDeviation = 0;
+    public BigDecimal standardDeviationAsk(){
+        BigDecimal standardDeviation = new BigDecimal("0");
+        BigDecimal average = this.averageAsk();
+        BigDecimal sum = new BigDecimal("0");
+        for (Currency currency:currencyList){
+            BigDecimal subtract = new BigDecimal(currency.getAsk()).subtract(average);
+            BigDecimal power = new BigDecimal(String.valueOf(subtract)).pow(2);
+            sum = new BigDecimal(String.valueOf(sum)).add(power);
+        }
+        BigDecimal divide = new BigDecimal(String.valueOf(sum)).divide(BigDecimal.valueOf(currencyList.size()));
+        standardDeviation = new BigDecimal(String.valueOf(Math.sqrt(Double.valueOf(String.valueOf(divide)))));
 
-        return standardDeviation;
+        return standardDeviation.setScale(4, RoundingMode.HALF_UP);
     }
 }
