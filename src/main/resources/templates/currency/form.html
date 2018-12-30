@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Obliczanie średniej i odchylenia standardowego</title>
 </head>
 <body>
 <h3>Średnia i odchylenie standardowe</h3>
-<form action="">
+<form autocomplete="off" action="#" th:action="@{/currency/form}" th:object="${dataForm}" method="post" role="form">
+
     Kod waluty
-    <select name="code">
-        <option value="EUR">EUR</option>
-        <option value="USD">USD</option>
-        <option value="CHF">CHF</option>
-        <option value="GBP">GBP</option>
+    <select th:field="*{code}" name="code">
+        <option th:text="'EUR'" th:value="EUR">EUR</option>
+        <option th:text="'USD'" th:value="USD">USD</option>
+        <option th:text="'CHF'" th:value="CHF">CHF</option>
+        <option th:text="'GBP'" th:value="GBP">GBP</option>
     </select><br>
+
     Data początkowa
-    <input type="date" name="startDate"><br>
+    <input type="date" th:field="*{startDate}" name="startDate"><br>
     Data końcowa
-    <input type="date" name="endDate"><br>
+    <input type="date" th:field="*{endDate}" name="endDate"><br>
     <input type="submit">
 </form>
+
+<h2 th:if="${averageBid}">Średnia cena skupu wynosiła: <span th:if="${averageBid}" class="text-success" th:utext="${averageBid}"></span></h2>
+<h2 th:if="${standardDeviation}">Odchylenie standardowe sprzedaży wynosiło: <span th:if="${standardDeviation}" class="text-success" th:utext="${standardDeviation}"></span></h2>
+
 </body>
 </html>

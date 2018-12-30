@@ -3,6 +3,7 @@ package pl.currenda.repository;
 import pl.currenda.model.Currency;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class CurrencyRepository {
             BigDecimal power = new BigDecimal(String.valueOf(subtract)).pow(2);
             sum = new BigDecimal(String.valueOf(sum)).add(power);
         }
-        BigDecimal divide = new BigDecimal(String.valueOf(sum)).divide(BigDecimal.valueOf(currencyList.size()));
+        BigDecimal divide = new BigDecimal(String.valueOf(sum)).divide(BigDecimal.valueOf(currencyList.size()), MathContext.DECIMAL128);
         standardDeviation = new BigDecimal(String.valueOf(Math.sqrt(Double.valueOf(String.valueOf(divide)))));
 
         return standardDeviation.setScale(4, RoundingMode.HALF_UP);
