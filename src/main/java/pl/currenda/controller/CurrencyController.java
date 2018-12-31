@@ -31,6 +31,7 @@ public class CurrencyController {
             CurrencyRepository repository = service.getCurrencyDataFromDate(dataForm.getCode(), dataForm.getStartDate(), dataForm.getEndDate());
             modelAndView.addObject("averageBid", repository.averageBid());
             modelAndView.addObject("standardDeviation", repository.standardDeviationAsk());
+            modelAndView.addObject("currencyList", repository.getCurrencyList());
 
         } catch (JSONException e) {
             e.printStackTrace();
