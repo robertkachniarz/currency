@@ -26,6 +26,7 @@
 
 <h3 th:if="${averageBid}">Średnia cena skupu wynosiła: <span th:if="${averageBid}" class="text-success" th:utext="${averageBid}"></span></h3>
 <h3 th:if="${standardDeviation}">Odchylenie standardowe sprzedaży wynosiło: <span th:if="${standardDeviation}" class="text-success" th:utext="${standardDeviation}"></span></h3>
+<h2 th:if="${fail}" th:text="${fail}"><span th:if="${fail}" class="text-success" th:utext="${fail}"></span></h2>
 <table th:if="${currencyList}" border="1">
     <tr bgcolor="#87cefa"><td>Data</td><td>Cena skupu</td><td>Cena sprzedaży</td></tr>
     <tr th:each="currency : ${currencyList}" width="300 px"><td th:text="${currency.getDate()}" width="100 px">Data</td><td th:text="${currency.getBid()}" width="100 px">Cena skupu</td><td th:text="${currency.getAsk()}" width="100 px">Cena sprzedaży</td></tr>

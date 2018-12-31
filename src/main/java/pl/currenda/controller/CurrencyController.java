@@ -36,7 +36,7 @@ public class CurrencyController {
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            modelAndView.addObject("fail", "Ups... Coś poszło nie tak");
         }
 
         modelAndView.setViewName("currency/form");
